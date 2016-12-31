@@ -1,0 +1,65 @@
+def dijkstra(n,p,s,m):
+    r=90000000
+    G=[[] for i in xrange(n+1)]
+    q=[]
+    for i in xrange(m):
+        q.append([p[i][0],p[i][1]])
+    a=[[r for i in xrange(n+1)] for j in xrange(n+1)]
+    f=0
+    for [x,y] in q:
+        if (p[f][2]<a[x][y]):
+            a[x][y]=(p[f][2])
+            a[y][x]=(p[f][2])
+        f+=1
+    for [i,j] in q:
+        if (i not in G[j] and i!=j):
+            G[i].append(j)
+            G[j].append(i)
+
+    #1        G[j].append(i)
+    done=[]
+    ##
+    #2
+    l=dict()
+    for i in xrange(n+1):
+        l[i]=r
+    l[s]=0
+    l[0]=2*r
+    ##
+    
+    #3
+    ndone=dict()
+    for i in xrange(n+1):
+        ndone[i]=r
+    ## a while loop here
+    while (len(done)<n):
+        b=sorted(l,key=l.get)
+        done.append(b[0])
+        for i in G[b[0]]:
+            try:
+                if ((l[b[0]]+a[i][b[0]])<l[i]):
+                    l[i]=l[b[0]]+a[i][b[0]]
+            except:
+                h=1
+        ndone[b[0]]=l[b[0]]        
+        l.pop(b[0])
+    
+                
+    st=""
+    for i in range(1,s)+range(s+1,n+1):
+        z=ndone[i]
+        st+=str(z)+" "
+        
+    return st    
+
+        
+
+z=input()
+for i in xrange(z):
+    [n,m]=map(int,raw_input().split())
+    p=[]
+    for j in xrange(m):
+        p.append(map(int,raw_input().split()))
+    s=input()    
+    print (dijkstra(n,p,s,m))
+    
