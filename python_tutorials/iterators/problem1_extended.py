@@ -1,3 +1,7 @@
+'''Problem 1: Write an iterator class reverse_iter, that takes a list and iterates it from the reverse direction. ::
+   The items does not vanish after first call
+'''
+
 class rev_range:
     def __init__(self, n):
 	self.n = n
