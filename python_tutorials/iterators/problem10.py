@@ -1,6 +1,8 @@
 '''Implement a function izip that works like itertools.izip.'''
 
+from memory_profiler import profile
 class my_izip:
+    @profile
     def __init__(self,arg1,arg2):
 	self.arg1 = arg1
 	self.arg2 = arg2
@@ -9,7 +11,8 @@ class my_izip:
 
     def __iter__(self):
 	return self
-
+    
+    @profile
     def next(self):
 	i = self.i
         l = self.l
