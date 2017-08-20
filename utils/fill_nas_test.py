@@ -7,3 +7,6 @@ d = pd.DataFrame(a)
 
 d_mean = d.mean()
 d_std = d.std()
+
+############# For element wise operation checking respective NANs ##########
+d.apply(lambda x: 1 if not pd.notnull(x).all() else x, axis =1)
